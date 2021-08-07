@@ -8,7 +8,11 @@ api_id = os.environ['API_ID']
 api_hash = os.environ['API_HASH']
 bot_username = os.environ['BOT_USER_NAME']
 
-app = Client(session_name=':memory:', bot_token=token, api_id=api_id, api_hash=api_hash)
+app = Client(
+    session_name=':memory:',
+    bot_token=token,
+    api_id=api_id,
+    api_hash=api_hash)
 
 filters = (['/кто?', '/кто', '/who?', '/who'])
 
@@ -17,7 +21,7 @@ def echo(client, message):
     chat = message.get('chat')
     try:
         app.start()
-    except:
+    except BaseException:
         print('Already started')
 
     users = app.get_chat_members(chat.get('id'))
