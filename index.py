@@ -17,7 +17,7 @@ app = Client(
 filters = (['/кто?', '/кто', '/who?', '/who'])
 
 
-def echo(client, message):
+def pick(client, message):
     chat = message.get('chat')
     try:
         app.start()
@@ -44,7 +44,7 @@ def runner(event, context):
             'method': 'sendMessage',
             'chat_id': chat.get('id'),
             'reply_to_message_id': message.get('message_id'),
-            'text': echo('', message)
+            'text': pick('', message)
         }
 
         res = {
