@@ -1,5 +1,5 @@
 # Picker
-picks random user from Telegram chat
+picks random user from Telegram chat <br>
 uses Telegram bot API and Pyrogram
 
 
