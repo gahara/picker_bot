@@ -36,10 +36,25 @@ def pick(client, message):
 
 def runner(event, context):
     body = json.loads(event.get('body'))
-    message = body.get('message')
-    chat = message.get('chat')
 
-    if message.get('text') in filters:
+    message = body.get('message') if body.get(
+        'message') else body.get('edited_message')
+
+    if not message:
+        print('Empty message')
+        return {
+            'statusCode': 200
+        }
+
+    chat = message.get('chat')
+    raw_text = message.get('text')
+    if not raw_text:
+        return {
+            'statusCode': 200
+        }
+    [text] = raw_text.split('@')
+
+    if text in filters:
         answer = {
             'method': 'sendMessage',
             'chat_id': chat.get('id'),
